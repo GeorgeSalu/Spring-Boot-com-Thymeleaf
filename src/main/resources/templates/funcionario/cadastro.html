@@ -22,10 +22,11 @@
 	        </div>
 	
 	        <div class="container" id="cadastro">
-	        	
+	        
 	        	<div th:replace="fragments/alert"></div>
 	        
-	            <form th:action="@{/funcionarios/salvar}" th:object="${funcionario}" method="POST">
+	            <form th:action="${funcionario.id == null} ? @{/funcionarios/salvar} : @{/funcionarios/editar}" 
+	                  th:object="${funcionario}" method="POST">
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="nome">Nome do Funcionário</label>
@@ -82,8 +83,8 @@
 	                    </div>
 	                    <div class="form-group col-md-6">
 	                        <label for="logradouro">Logradouro</label>
-	                        <input type="text" class="form-control" id="logradouro" placeholder="logradouro sem número"
-	                               th:field="*{endereco.logradouro}"/>
+	                        <input type="text" class="form-control" id="logradouro" 
+	                               placeholder="logradouro sem número" th:field="*{endereco.logradouro}"/>
 	                        <div class="invalid-feedback">
 	
 	                        </div>
@@ -99,8 +100,8 @@
 	                    </div>
 	                    <div class="form-group col-md-6">
 	                        <label for="complemento">Complemento</label>
-	                        <input type="text" class="form-control" id="complemento" placeholder="fundos, casa, AP. 102, .."
-	                               th:field="*{endereco.complemento}"/>
+	                        <input type="text" class="form-control" id="complemento" 
+	                               placeholder="fundos, casa, AP. 102, .." th:field="*{endereco.complemento}"/>
 	                        <div class="invalid-feedback">
 	
 	                        </div>
@@ -126,13 +127,15 @@
 	                    </div>
 	                    <div class="form-group col-md-2">
 	                        <label for="cep">Cep</label>
-	                        <input type="text" class="form-control" id="cep" data-mask="00000-000" th:field="*{endereco.cep}"/>
+	                        <input type="text" class="form-control" id="cep" data-mask="00000-000" 
+	                               th:field="*{endereco.cep}"/>
 	                        <div class="invalid-feedback">
 	
 	                        </div>
 	                    </div>
 	                </div>
-	                <input type="hidden" id="id" name="id" value=""/>
+	                <input type="hidden" id="id" th:field="*{id}"/>
+					<input type="hidden" id="endereco.id" th:field="*{endereco.id}"/>
 	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 	            </form>
 	        </div>
