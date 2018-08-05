@@ -2,6 +2,7 @@ package com.curso.boot.domain;
 
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 @Table
 public class Endereco extends AbstractEntity<Long> {
